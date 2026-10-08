@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Candole_Midtern_Store.Models
+namespace Candole_Midterm_Store.Models
 {
     public class CartItem
     {
