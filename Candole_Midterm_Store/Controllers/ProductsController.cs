@@ -14,10 +14,20 @@ namespace Candole_Midterm_Store.Controllers
             _context = context;
         }
 
-
-        public async Task<IActionResult> Index()
+       
+        public async Task<IActionResult> Index(string? search)
         {
-            var products = await _context.Products.OrderBy(p => p.Name).ToListAsync();
+            var query = _context.Products.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                var term = search.Trim().ToLower();
+                query = query.Where(p => p.Name.ToLower().Contains(term));
+            }
+
+            ViewData["Search"] = search?.Trim();
+
+            var products = await query.OrderBy(p => p.Name).ToListAsync();
             return View(products);
         }
 
@@ -85,7 +95,7 @@ namespace Candole_Midterm_Store.Controllers
             var product = await _context.Products.FindAsync(id);
             if (product == null) return NotFound();
 
-            
+           
             var cartItems = _context.CartItems.Where(c => c.ProductId == product.Id);
             _context.CartItems.RemoveRange(cartItems);
 
