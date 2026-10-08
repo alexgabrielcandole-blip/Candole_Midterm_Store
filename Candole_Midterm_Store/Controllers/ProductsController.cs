@@ -14,14 +14,14 @@ namespace Candole_Midterm_Store.Controllers
             _context = context;
         }
 
-        // READ: list all products
+
         public async Task<IActionResult> Index()
         {
             var products = await _context.Products.OrderBy(p => p.Name).ToListAsync();
             return View(products);
         }
 
-        // CREATE
+
         public IActionResult Create()
         {
             return View();
@@ -42,7 +42,7 @@ namespace Candole_Midterm_Store.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // UPDATE
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
@@ -77,7 +77,7 @@ namespace Candole_Midterm_Store.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // DELETE (GET-based, same as the Delete we did in class)
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
@@ -85,7 +85,7 @@ namespace Candole_Midterm_Store.Controllers
             var product = await _context.Products.FindAsync(id);
             if (product == null) return NotFound();
 
-            // Also remove this product from any carts so no orphan cart items are left.
+            
             var cartItems = _context.CartItems.Where(c => c.ProductId == product.Id);
             _context.CartItems.RemoveRange(cartItems);
 
