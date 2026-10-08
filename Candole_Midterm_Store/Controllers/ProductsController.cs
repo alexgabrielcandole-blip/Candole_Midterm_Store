@@ -7,7 +7,7 @@ namespace Candole_Midterm_Store.Controllers
 {
     public class ProductsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        public ApplicationDbContext _context;
 
         public ProductsController(ApplicationDbContext context)
         {
