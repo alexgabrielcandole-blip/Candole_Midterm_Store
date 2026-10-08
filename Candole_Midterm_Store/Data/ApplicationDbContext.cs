@@ -1,4 +1,4 @@
-using Lastname_Midterm_Store.Models;
+using Candole_Midterm_Store.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Candole_Midterm_Store.Data
