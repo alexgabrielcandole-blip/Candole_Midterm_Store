@@ -1,0 +1,9 @@
+Errors that i found:
+Controllers > Product Controllers 
+
+-        private readonly ApplicationDbContext _context;
++        public ApplicationDbContext _context;
+
+readonly means the field can be assigned only once, in the constructor, so no action method can accidentally replace _context with another object or null. Without readonly, a typo like _context = null; still compiles and only crashes later when the app runs.
+
+
