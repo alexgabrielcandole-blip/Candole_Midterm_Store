@@ -14,14 +14,14 @@ namespace Candole_Midterm_Store.Controllers
             _context = context;
         }
 
-        // READ: show all cart items (the view computes the total)
+
         public async Task<IActionResult> Index()
         {
             var items = await _context.CartItems.OrderBy(c => c.Id).ToListAsync();
             return View(items);
         }
 
-        // CREATE: Add to Cart (quantity 1; if already in the cart, quantity goes up by 1)
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(int productId)
@@ -50,7 +50,6 @@ namespace Candole_Midterm_Store.Controllers
             return RedirectToAction("Index", "Products");
         }
 
-        // UPDATE: change quantity
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateQuantity(int id, int quantity)
@@ -67,7 +66,6 @@ namespace Candole_Midterm_Store.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // DELETE: Remove from cart
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Remove(int id)
