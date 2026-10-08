@@ -3,7 +3,7 @@ using Candole_Midterm_Store.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Lastname_Midterm_Store.Controllers
+namespace Candole_Midterm_Store.Controllers
 {
     public class CartController : Controller
     {
